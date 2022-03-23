@@ -3,8 +3,8 @@ package hello.advanced.basic.app.v4;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import hello.advanced.basic.trace.logtrace.LogTrace;
-import hello.advanced.basic.trace.template.AbstractTemplate;
+import hello.advanced.trace.logtrace.LogTrace;
+import hello.advanced.trace.template.AbstractTemplate;
 import lombok.RequiredArgsConstructor;
 
 @RestController

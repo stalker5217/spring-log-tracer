@@ -1,7 +1,7 @@
-package hello.advanced.basic.trace.callback;
+package hello.advanced.trace.callback;
 
-import hello.advanced.basic.trace.TraceStatus;
-import hello.advanced.basic.trace.logtrace.LogTrace;
+import hello.advanced.trace.TraceStatus;
+import hello.advanced.trace.logtrace.LogTrace;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

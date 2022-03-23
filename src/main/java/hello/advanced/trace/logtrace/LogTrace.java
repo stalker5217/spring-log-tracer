@@ -1,6 +1,6 @@
-package hello.advanced.basic.trace.logtrace;
+package hello.advanced.trace.logtrace;
 
-import hello.advanced.basic.trace.TraceStatus;
+import hello.advanced.trace.TraceStatus;
 
 public interface LogTrace {
     TraceStatus begin(String message);

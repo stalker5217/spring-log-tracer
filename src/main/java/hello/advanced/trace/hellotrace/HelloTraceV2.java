@@ -1,22 +1,19 @@
-package hello.advanced.basic.trace.logtrace;
+package hello.advanced.trace.hellotrace;
 
-import hello.advanced.basic.trace.TraceId;
-import hello.advanced.basic.trace.TraceStatus;
+import hello.advanced.trace.TraceId;
+import hello.advanced.trace.TraceStatus;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 @Slf4j
-public class ThreadLocalLogTrace implements LogTrace {
+@Component
+public class HelloTraceV2 {
     private static final String START_PREFIX = "-->";
     private static final String COMPLETE_PREFIX = "<--";
     private static final String EX_PREFIX = "<X-";
 
-    private ThreadLocal<TraceId> traceIdHolder = new ThreadLocal<>(); // Trace ID를 동기화
-
-    @Override
     public TraceStatus begin(String message) {
-        syncTraceId();
-        TraceId traceId = traceIdHolder.get();
-
+        TraceId traceId = new TraceId();
         Long startTimeMs = System.currentTimeMillis();
         log.info("[{}] {}{}", traceId.getId(), addSpace(START_PREFIX, traceId.getLevel()), message);
 
@@ -24,23 +21,18 @@ public class ThreadLocalLogTrace implements LogTrace {
         return new TraceStatus(traceId, startTimeMs, message);
     }
 
-    private void syncTraceId() {
-        TraceId traceId = traceIdHolder.get();
+    public TraceStatus beginSync(TraceId beforeTraceId, String message) {
+        TraceId nextId = beforeTraceId.createNextId();
+        Long startTimeMs = System.currentTimeMillis();
+        log.info("[{}] {}{}", nextId.getId(), addSpace(START_PREFIX, nextId.getLevel()), message);
 
-        if (traceId == null) {
-            traceIdHolder.set(new TraceId());
-        }
-        else {
-            traceIdHolder.set(traceId.createNextId());
-        }
+        return new TraceStatus(nextId, startTimeMs, message);
     }
 
-    @Override
     public void end(TraceStatus status) {
         complete(status, null);
     }
 
-    @Override
     public void exception(TraceStatus status, Exception e) {
         complete(status, e);
     }
@@ -57,17 +49,6 @@ public class ThreadLocalLogTrace implements LogTrace {
             log.info("[{}] {}{} time={}ms ex={}", traceId.getId(),
                     addSpace(EX_PREFIX, traceId.getLevel()), status.getMessage(), resultTimeMs,
                     e.toString());
-        }
-    }
-
-    private void releaseTraceId() {
-        TraceId traceId = traceIdHolder.get();
-
-        if(traceId.isFirstLevel()) {
-            traceIdHolder.remove();
-        }
-        else {
-            traceIdHolder.set(traceId.createPreviousId());
         }
     }
 

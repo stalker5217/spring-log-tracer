@@ -1,7 +1,7 @@
 package hello.advanced.basic.app.v3;
 
-import hello.advanced.basic.trace.TraceStatus;
-import hello.advanced.basic.trace.logtrace.LogTrace;
+import hello.advanced.trace.TraceStatus;
+import hello.advanced.trace.logtrace.LogTrace;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

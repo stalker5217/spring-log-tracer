@@ -2,8 +2,8 @@ package hello.advanced.basic.app.v5;
 
 import org.springframework.stereotype.Repository;
 
-import hello.advanced.basic.trace.callback.TraceTemplate;
-import hello.advanced.basic.trace.logtrace.LogTrace;
+import hello.advanced.trace.callback.TraceTemplate;
+import hello.advanced.trace.logtrace.LogTrace;
 
 @Repository
 public class OrderRepositoryV5 {
