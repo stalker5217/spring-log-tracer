@@ -1,4 +1,4 @@
-package hello.advanced.proxy.common;
+package hello.advanced.proxy.common.service;
 
 import lombok.extern.slf4j.Slf4j;
 

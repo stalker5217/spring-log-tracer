@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.cglib.proxy.Enhancer;
 
 import hello.advanced.proxy.cglib.code.TimeMethodInterceptor;
-import hello.advanced.proxy.common.ConcreteService;
+import hello.advanced.proxy.common.service.ConcreteService;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

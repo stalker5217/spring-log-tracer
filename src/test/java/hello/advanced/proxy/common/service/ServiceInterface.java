@@ -1,4 +1,4 @@
-package hello.advanced.proxy.common;
+package hello.advanced.proxy.common.service;
 
 public interface ServiceInterface {
 	void save();
